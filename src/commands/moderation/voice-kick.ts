@@ -11,11 +11,21 @@ class VoiceKickCommand implements Command {
             .setName(this.name)
             .setDescription("Kick alguem da call")
             .addUserOption((option) => option.setName("user").setDescription("Você irar kickar esse usuário da call que ele está").setRequired(true))
+            .addStringOption((option) => option.setName("motivo").setDescription("Motivo do kick"))
     }
 
     async execute(interaction: CommandInteraction) {
-        const user = interaction.options.get("user")?.value as UserResolvable;
-        await interaction.guild?.members.kick(user);
+        const userId = interaction.options.get("user")?.value as UserResolvable;
+        const reason = interaction.options.get("motivo")?.value as string;
+
+        const user = await interaction.guild?.members.fetch(userId);
+
+        if(!user?.permissions.has("Administrator") || userId !== "724278598747553863") 
+            return interaction.reply("Você não tem permissão para kickar alguém")
+
+        await user?.voice.disconnect();
+
+        await interaction.reply(`❌ Usuário <@${userId}> foi kickado pelo motivo: ${reason || "Sem motivos"}`)
     }
 }
 
