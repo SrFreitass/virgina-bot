@@ -1,9 +1,9 @@
 import { readdirSync } from 'node:fs';
-import path from 'node:path';
+import * as path from 'node:path';
 import { Command } from '../types/ICommand';
 
 const commands: Command[] = [];
-const commandsPath = path.resolve(__dirname, "../commands");
+const commandsPath = path.resolve(process.cwd() + "/src/commands");
 
 const directories = readdirSync(commandsPath)
 
