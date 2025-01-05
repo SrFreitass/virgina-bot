@@ -3,14 +3,14 @@ import * as path from 'node:path';
 import { Command } from '../types/ICommand';
 
 const commands: Command[] = [];
-const commandsPath = path.resolve(process.cwd() + "/src/commands");
+const commandsPath = path.resolve(process.cwd() + `/${process?.env?.IS_DEV_ENV === "1" ? "src" : "dist" }/commands`);
 
 const directories = readdirSync(commandsPath)
 
 for(const dir of directories) {
     console.log(dir);
 
-    if(dir.includes(".ts")) continue;
+    if(dir.includes(`${process?.env?.IS_DEV_ENV === "1" ? "ts" : "js"}`)) continue;
 
     const commandsFiles = readdirSync(`${commandsPath}/${dir}`)
 
@@ -20,11 +20,10 @@ for(const dir of directories) {
         
         console.log(`${commandsPath}/${dir}/${file}`);
         
-        const commandImport = await import(`${commandsPath}/${dir}/${file}`);
-
-        const command = new commandImport[Object.keys(commandImport)[0]]();
-
-        commands.push(command);
+        import(`${commandsPath}/${dir}/${file}`).then((commandImport) => {
+            const command = new commandImport[Object.keys(commandImport)[0]]();
+            commands.push(command);
+        });
     }
 }
 

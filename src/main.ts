@@ -1,4 +1,5 @@
 import { Events } from 'discord.js';
+import 'dotenv/config';
 import { client } from './client';
 import './config/refresh-commands';
 import { commands } from './utils/dynamic-import-commands';
