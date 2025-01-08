@@ -4,7 +4,8 @@ import { Command } from '../types/ICommand';
 
 const dynamicImportCommands = async () => {
     const commands: Command[] = [];
-    const commandsPath = path.resolve(process.cwd() + `/${process?.env?.DEV === "1" ? "src" : "dist" }/commands`);
+
+    const commandsPath = path.resolve(process.cwd() + `/${process?.env?.DEVELOPMENT === "1" ? "src" : "dist" }/commands`);
     
     const directories = readdirSync(commandsPath)
     
@@ -12,7 +13,7 @@ const dynamicImportCommands = async () => {
         console.log(dir);
     
         if(dir.includes('.')) continue;
-    
+            
         const commandsFiles = readdirSync(`${commandsPath}/${dir}`)
     
         for(const file of commandsFiles) {

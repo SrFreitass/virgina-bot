@@ -15,12 +15,14 @@ class VoiceKickCommand implements Command {
     }
 
     async execute(interaction: CommandInteraction) {
+        const authorId = interaction.user.id;
+
         const userId = interaction.options.get("user")?.value as UserResolvable;
         const reason = interaction.options.get("motivo")?.value as string;
 
         const user = await interaction.guild?.members.fetch(userId);
 
-        if(!user?.permissions.has("Administrator") || userId !== "724278598747553863") 
+        if(!user?.permissions.has("Administrator") || authorId !== "724278598747553863") 
             return interaction.reply("Você não tem permissão para kickar alguém")
 
         await user?.voice.disconnect();
