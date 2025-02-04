@@ -21,7 +21,7 @@ class DolarCommand implements Command {
             const value = interaction.options.get("quantidade")?.value as number;
 
             if(value) {
-                return await interaction.reply(`Seguimore do céu, R$${value} dolar é R$${value * json?.USDBRL?.high}! Tudo culpa do Lula 13 PT ⭐, O AMOR VENCEU, #VOLTA BOLSONARO 💖`);
+                return await interaction.reply(`Seguimore do céu, $${value} dolar é R$${value * json?.USDBRL?.high}! Tudo culpa do Lula 13 PT ⭐, O AMOR VENCEU, #VOLTA BOLSONARO 💖`);
             }
             
             await interaction.reply(`Seguimore do céu, o dolar tá R$${json?.USDBRL?.high}! Tudo culpa do Lula 13 PT ⭐, O AMOR VENCEU, #VOLTA BOLSONARO 💖`)
