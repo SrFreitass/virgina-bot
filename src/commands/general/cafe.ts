@@ -24,7 +24,7 @@ class CafeCommand implements Command {
             const price = Number(td[2].replace("</td>", "").replace(",", ".").replace(".", ""));
             const price2 = Number(td[77].replace("</td>", "").replace(",", ".").replace(".", ""));
 
-            const response = `O preço do ☕ CAFÉ ARÁBICA CEPEA/ESALQ ${(price/60).toFixed(2)}kg, ${price}/60kg, tá caro né? Só não comprar que o preço abaixa! 13 ⭐ \n O preço do ☕ CAFÉ ROBUSTA CEPEA/ESALQ ${(price2/60).toFixed(2)}kg, ${price2}/60kg, tá caro né? Só não comprar que o preço abaixa! 13 ⭐`;
+            const response = `O preço do ☕ CAFÉ ARÁBICA CEPEA/ESALQ ${(price/60).toFixed(2)}/kg, ${price}/60kg, tá caro né? Só não comprar que o preço abaixa! 13 ⭐ \n O preço do ☕ CAFÉ ROBUSTA CEPEA/ESALQ ${(price2/60).toFixed(2)}/kg, ${price2}/60kg, tá caro né? Só não comprar que o preço abaixa! 13 ⭐`;
 
             await interaction.reply(response);
         } catch (error) {
