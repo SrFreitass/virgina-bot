@@ -31,13 +31,13 @@ const main = async () => {
     });
     
     client.login(process?.env?.DISCORD_BOT_TOKEN);
-    createServer((req, res) => {
-        res.writeHead(200, { 'Content-Type': 'text/plain' });
-        res.end('Server is running');
-    }
-    ).listen(3000, '0.0.0.0', () => {
-        console.log('HTTP/2 server is running on port 3000');
-    })
 }
 
-main();
+createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Server is running');
+}
+).listen(3000, '0.0.0.0', () => {
+    console.log('HTTP/2 server is running on port 3000');
+    main();
+})
