@@ -5,10 +5,7 @@ import { Command } from "../types/ICommand";
 const dynamicImportCommands = async () => {
   const commands: Command[] = [];
 
-  const commandsPath = path.resolve(
-    __dirname +
-      `/../${process?.env?.IS_DEV_ENV === "1" ? "" : "dist"}/commands`,
-  );
+  const commandsPath = path.resolve(__dirname + `/../commands`);
 
   const directories = readdirSync(commandsPath);
 
