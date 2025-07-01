@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@discordjs/voice": "^0.18.0",
+    "@google/genai": "^1.7.0",
     "discord.js": "^14.17.2",
     "dotenv": "^16.4.7",
     "ffmpeg-static": "^5.2.0",
@@ -12,6 +13,7 @@
     "start": "node ./dist/main.js"
   },
   "devDependencies": {
+    "genai": "link:@types/@google/genai",
     "typescript": "^5.7.2"
   }
 }

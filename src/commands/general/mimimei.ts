@@ -20,9 +20,13 @@ class mimimeiCommand implements Command {
 
         const prompt = promptVirginia + question;
 
+        await interaction.deferReply();
         const response = await request(prompt);
+        await interaction.editReply(response);
+        
+        console.log(`Mimimei command executed with question: ${question}`);
+        console.log(`Response from AI: ${response}`);
 
-        await interaction.reply(response);
     }
 }
 

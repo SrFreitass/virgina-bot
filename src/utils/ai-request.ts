@@ -1,22 +1,21 @@
+import { GoogleGenAI } from "@google/genai";
+import { promptVirginia } from "./prompt";
+
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY,
+})
+
 const request = async (prompt: string) => {
-    const res = await fetch(`${process?.env?.GEMINI_API_URL}?key=${process?.env?.GEMINI_API_KEY}`, {
-        method: "POST",
-        body: JSON.stringify({
-            contents: [
-                {
-                    parts: [
-                        {
-                            text: prompt
-                        }
-                    ]
-                }
-            ]
-        })
-    });
+  const response = await ai.models.generateContent({
+    model: "gemini-2.0-flash",
+    contents: prompt,
+    config: {
+      systemInstruction: promptVirginia,
+      temperature: 1,
+    }
+  });
 
-    const json = await res.json();
-
-    return json.candidates[0]?.content?.parts[0]?.text || "Não entendi a pergunta, pode repetir?";
-}
+  return response.text;
+};
 
 export { request };
