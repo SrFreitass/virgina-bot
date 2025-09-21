@@ -1,6 +1,5 @@
 import { Events } from "discord.js";
 import "dotenv/config";
-import { createServer } from "node:http";
 import { client } from "./client";
 import "./config/refresh-commands";
 import { refreshCommands } from "./config/refresh-commands";
@@ -31,10 +30,4 @@ const main = async () => {
   client.login(process?.env?.DISCORD_BOT_TOKEN);
 };
 
-createServer((req, res) => {
-  res.writeHead(200, { "Content-Type": "text/plain" });
-  res.end("Server is running");
-}).listen(process.env.PORT || 8080, () => {
-  console.log("HTTP server is running on port 8080");
-  main();
-});
+main();
